@@ -6,13 +6,22 @@ const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 const imageminMozJPEG = require('imagemin-mozjpeg');
 const camelcase = require('camelcase');
+const argv = require('./argv');
+
+const {
+  alt,
+  baseSize,
+  build,
+  source,
+} = argv;
+
+const altText = require(`./${alt}`);
+
 const generateComponents = require('./generateComponents');
 
-const srcPath = path.join(__dirname, 'src');
+const srcPath = path.join(__dirname, source);
 const tmpPath = path.join(__dirname, 'tmp');
-const buildPath = path.join(__dirname, 'build');
-
-const BASE_SIZE = 270;
+const buildPath = path.join(__dirname, build);
 
 const breakpoints = new Map();
 breakpoints.set('xs', 0);
@@ -51,7 +60,7 @@ const generateSizes = (base) => {
   };
 };
 
-const sizes = generateSizes(BASE_SIZE);
+const sizes = generateSizes(baseSize);
 const imgList = [];
 
 // Remove temporary directory.
@@ -199,6 +208,7 @@ const process = async () => {
   console.log('Done! Now generating your React components...');
 
   await generateComponents({
+    alt: altText,
     breakpoints,
     buildPath,
     files: imgList,

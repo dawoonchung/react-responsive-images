@@ -12,7 +12,8 @@
     "imagemin": "^7.0.1",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-webp": "^6.0.0",
-    "promise": "^8.1.0"
+    "promise": "^8.1.0",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
