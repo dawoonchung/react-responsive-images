@@ -2,9 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 const camelcase = require('camelcase');
-const alt = require('./alt.json');
 
 const generateComponents = ({
+  alt,
   breakpoints,
   buildPath,
   files,
